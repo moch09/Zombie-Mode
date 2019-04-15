@@ -26,17 +26,17 @@ class Main extends PluginBase implements Listener{
 
 
     public function onEnable(){
-        $this->getServer()->getPluginManager()->registerEvents(new EventListener($this),$this);
+        $this->getPluginManager()->registerEvents(new EventListener($this),$this);
         //$this->getCommand("infection")->setExecutor(new Commands($this));
         $this->getLogger()->info(Main::COLOR("&bInfection plugin &aEnabled!"));
         $this->registerEvents();
         @mkdir($this->getDataFolder());
         $this->config = (new Config($this->getDataFolder() . "config.yml", Config::YAML));
-        $this->getServer()->getPluginManager()->registerEvents($this, $this);
+        $this->getPluginManager()->registerEvents($this, $this);
     }
 
     public function registerEvents(){
-        $this->getServer()->getPluginManager()->registerEvents(new EventListener($this), $this);
+        $this->getPluginManager()->registerEvents(new EventListener($this), $this);
     }
 
     public static function COLOR($message){
@@ -156,14 +156,14 @@ class Main extends PluginBase implements Listener{
     }
 
     public function startTask($time){
-        $this->getServer()->getScheduler()->scheduleRepeatingTask(new WaitTask($this), $time * 20);
+        $this->getScheduler()->scheduleRepeatingTask(new WaitTask($this), $time * 20);
         $time--;
         $players = $this->getPlayersInGame();
         if($players instanceof Player){
             $players->sendPopup(Main::COLOR("&aIniciando en &e" . $time . "&a segundos"));
         }
         if(count($this->getPlayersInGame()) === 16){
-            $this->getServer()->getScheduler()->cancelTasks($this);
+            $this->getScheduler()->cancelTasks($this);
         }
     }
 
