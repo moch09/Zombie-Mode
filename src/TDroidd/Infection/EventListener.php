@@ -62,6 +62,5 @@ class EventListener implements Listener{
     }
 
     public function getServer(){
-        return $this->plugin->getServer();
-    }
+        return $this->plugin-
 }
