@@ -3,7 +3,6 @@ namespace TDroidd\Infection;
 use pocketmine\command\CommandExecutor;
 use pocketmine\command\CommandSender;
 use pocketmine\Server;
-use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
@@ -13,7 +12,7 @@ use pocketmine\utils\Config;
 use pocketmine\command\PluginIdentifiableCommand;
 use pocketmine\command\Command;
 
-class Main extends PluginBase implements Listener{
+class Main {
 
     public $infected = [];
     public $healthy_payers = [];
@@ -167,7 +166,7 @@ class Main extends PluginBase implements Listener{
         }
     }
 
-    public function onCommand(CommandSender $sender, Command $command, $label, array $args){
+    public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
         if (strtolower($command->getName()) == "infection") {
             if ($sender instanceof Player) {
                 switch ($args) {
